@@ -1,0 +1,45 @@
+#include<stdio.h>
+#define swap(t,x,y) t=x;x=y;y=t;
+int main()
+{
+int m,n;
+scanf("%d %d",&m,&n);
+int *arr1=(int*)malloc(sizeof(int)*m);
+int *arr2=(int*)malloc(sizeof(int)*n);
+int *arr3=(int*)malloc(sizeof(int)*(m+n));
+int *arr4=(int*)malloc(sizeof(int)*(m+n));
+for(int a=0;a<m;a++)
+    arr3[a]=arr1[a];
+    int q=m,flag=0;
+for(int a=0;a<n;a++)
+{
+    flag=0;
+    for(int b=0;b<m;b++)
+    {
+
+        if(arr2[a]==arr1[b])
+       {
+
+        flag=-1;
+        break;
+       }
+    }
+    if(flag==0)
+        arr3[q++]=arr2[a];
+}
+int f=0;
+for(int a=0;a<m;a++)
+{
+    for(int b=0;b<n;b++)
+    {
+        if(arr1[a]==arr2[b])
+        {
+            arr4[f++]=arr1[a];
+            break;
+        }
+    }
+}
+
+}
+
+
