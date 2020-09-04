@@ -1,0 +1,125 @@
+#include<stdlib.h>
+#include<stdio.h>
+#include<stdarg.h>
+#include<string.h>
+void myputs(char *str)
+{
+    char *ptr=str;
+    while(*ptr)
+    {
+        putchar(*ptr);
+        ptr++;
+    }
+}
+int abss(int a,int b)
+{
+    if(a>=b)
+        return a-b;
+    else
+        return b-a;
+}
+void reverse(char *str)
+{
+    int len=strlen(str);
+    char *frist=str,*last=str;
+    int t=0;
+    while(*last)
+        last++;
+    last--;
+    while(t<(len/2))
+    {
+        char temp=*frist;
+        *frist=*last;
+        *last=temp;
+        frist++;
+            last--;
+            t++;
+    }
+
+}
+void f1(int num)
+{
+    int t=0,x;
+    x=num;
+    while(num)
+    {
+        num/=10;
+        t++;
+    }
+    num=x;
+    char *str=(char*)malloc(sizeof(char)*t);
+    char *ptr=str;
+    while(num)
+    {
+        int rem=num%10;
+        num/=10;
+        *ptr=48+rem;;
+        ptr++;
+    }
+    *ptr='\0';
+    reverse(str);
+    myputs(str);
+}
+void f2(float num)
+{
+    int n=(int)num;
+    f1(n);
+    num=num-n;
+        while(abss(num,(int)num)>0.00001)
+            num*=10;
+        putchar('.');
+        f1(n);
+
+}
+void myprint(char *format ,...)
+{
+    char *m;
+    int num;
+    double num1;
+    va_list arg;
+    va_start (arg,format);
+    char *ptr;
+    for(ptr=format;*ptr!='\0';ptr++)
+    {
+        while(*ptr!='%')
+        {
+            putchar(*ptr);
+            ptr++;
+        }
+        ptr++;
+        switch(*ptr)
+        {
+        case 'd':
+             num=va_arg(arg,int);
+            if(num<0)
+            {
+                num=-num;
+                putchar('-');
+            }
+            f1(num);
+            break;
+        case 'f':
+             num1=va_arg(arg,double);
+            if(num1<0)
+            {
+                putchar('-');
+                num1=-num1;
+            }
+            f2(num1);
+            break;
+        case 's':
+            m=va_arg(arg,char*);
+            myputs(m);
+            break;
+        }
+    }
+    va_end(arg);
+}
+
+int main()
+{
+    float aa=11.123;
+    int a=111;
+    char str[100]="lovesera";
+    myprint("hi nabid %d %f\n %s",a,aa,str);
+}
