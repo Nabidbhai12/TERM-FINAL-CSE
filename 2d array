@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int t=1;
+int *arr;
+int j=0;
+arr=(int*)calloc(25,sizeof(int));
+for(int a=0;a<7;a++)
+{
+    int m=0;
+    while(m<t)
+    {
+
+        scanf("%d",(arr+j+m));
+        m++;
+    }
+    if(a<3)
+    {
+        j+=t;
+        t=t+2;
+
+    }
+    else{
+            j+=t;
+        t=t-2;
+
+    }
+
+}
+int y=0,lene=1;
+for(int a=0;a<25;a++)
+{
+
+     printf("%d ",arr[a]);
+     y++;
+     if(y==lene)
+     {
+         printf("\n");
+         y=0;
+         if(a<15)
+            lene+=2;
+         else
+            lene-=2;
+     }
+}
+}
