@@ -1,0 +1,61 @@
+#include<stdio.h>
+long long int f1(long long int num)
+{
+    long long int count=0;
+    while(num)
+    {
+        num/=10;
+        count*=10;
+    }
+    return count/10;
+}
+void print(long long int num)
+{
+    long long int comma,x,minus=0;
+
+if(num<0){
+    num=-num;
+    minus=1;
+}
+x=num;
+    long long int rem,count=1,t=0;
+    while(num)
+    {
+        num/=10;
+        count*=10;
+        t++;
+    }
+    num=x;
+     count/=10;
+     if(t%3==0)
+        comma=(t/3)-1;
+     else
+        comma=t/3;
+     int flag=1;
+     printf(" num %lld comma = %lld t %lld count %lld\n",num,comma,t,count);
+     if(minus==1)
+        printf("-");
+    while(num)
+    {
+
+
+        if(t%3==0 && flag!=1)
+        {
+            printf(",");
+        }
+        rem=num/count;
+        num=num%count;
+        count/=10;
+        printf("%lld",rem);
+        t--;
+        flag=0;
+
+    }
+
+}
+int main()
+{
+    long long int num;
+    scanf("%lld",&num);
+ print(num);
+}
