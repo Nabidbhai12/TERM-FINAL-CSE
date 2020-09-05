@@ -1,0 +1,84 @@
+
+// C program to demonstrate working of memset()
+#include <stdio.h>
+int strlen(char *str)
+{
+    int len=0;
+    char *ptr=str;
+    while(*ptr)
+    {
+        len++;
+        ptr++;
+    }
+    return len;
+}
+int substring(char *mstr,char *sstr)
+{
+    int len1=strlen(mstr);
+    int len2=strlen(sstr);
+    for(int i=0;i<=len1-len2;i++)
+    {
+        int j;
+        for(j=0;j<len2;j++)
+        {
+            if(mstr[i+j]!=sstr[j])
+                break;
+        }
+        if(j==len2)
+            return i;
+    }
+    return 0;
+}
+int longc(char *mstr,char *sstr)
+{
+    int max=0,len1=strlen(mstr),len2=strlen(sstr),count,j;
+    for(int a=0;a<len1;a++)
+    {
+        count=0;
+
+        for(j=0;j<len2;j++)
+        {
+            count=0;
+            if(mstr[a]==sstr[j])
+            {
+                while((mstr[a+j]==sstr[j]) && (j<len2))
+                {
+                    j++;
+                    count++;
+                }
+            }
+            if(count>max)
+                max=count;
+
+        }
+    }
+    return max;
+}
+int max(int a,int b,int c)
+{
+    return ((a>=b)? (a>=c?a:c):(b>=c?b:c));
+
+}
+int f1(char *str1,int len1,char *str2,int len2,int count)
+{
+    if(len1==0 || len2==0)
+        return count;
+     if(str1[len1-1]==str2[len2-1])
+        count=f1(str1,len1-1,str2,len2-1,count+1);
+    count=max(count,f1(str1,len1-1,str2,len2,0),f1(str1,len1,str2,len2-1,0));
+    return count;
+
+
+
+}
+int main()
+{
+    char str[50];
+    scanf("%s",str);
+    char str1[1000];
+    scanf("%s",str1);
+    int o=0;
+    printf("%d\n",f1(str,strlen(str),str1,strlen(str1),o));
+
+
+}
