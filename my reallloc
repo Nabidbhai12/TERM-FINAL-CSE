@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+void *myrealloc(void *oldptr,int oldsize,int newsize)
+{
+    void *newptr;
+    newptr=malloc(newsize);
+    memcpy(newptr,oldptr,sizeof(oldptr));
+    free(oldptr);
+    return newptr;
+    
+
+}
+int main()
+{
+    char str[50];
+    scanf("%s",str);
+    char str1[1000];
+    scanf("%s",str1);
+
+
+}
