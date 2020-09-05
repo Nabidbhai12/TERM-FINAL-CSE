@@ -1,0 +1,26 @@
+#include<stdio.h>
+int iskbit(int num,int k)
+{
+    return (!((1 & 1<<(k-1))==0));
+}
+int f1(int num)
+{
+    int l=1,r=sizeof(num)*8;
+    while(l<r)
+    {
+        if(iskbit(num,l)!=iskbit(num,r))
+            return -1;
+        l++;
+        r--;
+    }
+    return 1;
+    
+}
+int main()
+{
+    int n;
+    while(scanf("%d",&n)==1){
+        printf("final %d\n",f1(n));
+    }
+
+}
